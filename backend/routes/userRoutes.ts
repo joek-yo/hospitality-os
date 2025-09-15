@@ -2,7 +2,8 @@
 
 import express from 'express';
 import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
-import User from '../models/User';
+import generateToken from '../utils/generateToken.ts';
+import User from '../models/User.ts';
 
 const router = express.Router();
 
@@ -43,6 +44,7 @@ router.post('/auth/signup', async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        token: generateToken(user.id),
       });
     } else {
       res.status(400).json({ message: 'Invalid user data' });

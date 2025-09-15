@@ -2,10 +2,13 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/userRoutes.ts';
+import connectDB from './config/db.ts';
+
 
 // Load environment variables from a .env file
 dotenv.config();
+connectDB();
 
 // Initialize the Express application
 const app = express();
