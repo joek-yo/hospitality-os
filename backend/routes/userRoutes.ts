@@ -12,7 +12,7 @@ const router = express.Router();
  * @route   POST /api/v1/auth/signup
  * @access  Public
  */
-router.post('/auth/signup', async (req: Request, res: Response) => {
+router.post('/signup', async (req: Request, res: Response) => {
   const { name, email, password, role } = req.body;
 
   if (!name || !email || !password) {
@@ -58,7 +58,7 @@ router.post('/auth/signup', async (req: Request, res: Response) => {
  * @route   POST /api/v1/auth/login
  * @access  Public
  */
-router.post('/auth/login', async (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -86,3 +86,4 @@ router.post('/auth/login', async (req: Request, res: Response) => {
 });
 
 export default router;
+

@@ -5,7 +5,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  role: "buyer" | "seller" | "admin"; // You can extend roles later
+  role: "buyer" | "supplier" | "admin"; 
 }
 
 const userSchema = new Schema<IUser>(
@@ -27,7 +27,7 @@ const userSchema = new Schema<IUser>(
     },
     role: {
       type: String,
-      enum: ["buyer", "seller", "admin"],
+      enum: ["buyer", "supplier", "admin"], // ✅ changed "seller" → "supplier"
       default: "buyer",
     },
   },
