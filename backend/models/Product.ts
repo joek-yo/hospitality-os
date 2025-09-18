@@ -1,45 +1,27 @@
 // backend/models/Product.ts
+import mongoose, { Schema, Document } from "mongoose";
 
-import mongoose from 'mongoose';
+export interface IProduct extends Document {
+  title: string;
+  description: string;
+  images: string[];
+  category: string;
+  price: number;
+  stock: number;
+  supplier: mongoose.Types.ObjectId;
+}
 
-const productSchema = new mongoose.Schema(
+const ProductSchema: Schema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    supplier: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User', // This creates a relationship to our User model
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    stock: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    image: {
-      type: String,
-      required: false, // We'll make this optional for now
-    },
+    title: { type: String, required: true },
+    description: { type: String },
+    images: [{ type: String }],
+    category: { type: String, required: true },
+    price: { type: Number, required: true },
+    stock: { type: Number, default: 0 },
+    supplier: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const Product = mongoose.model('Product', productSchema);
-
-export default Product;
+export default mongoose.model<IProduct>("Product", ProductSchema);
